@@ -1,9 +1,11 @@
-import Image from "next/image";
+import Banner from "@/components/Banner";
+import MainDoctorPage from "@/components/MainDoctor";
 
 export default function Home() {
   return (
-    <div className="mx-auto font-bold text-5xl my-50">
-         Doctor are the helping hand of Patients
+    <div >
+        <Banner></Banner>
+        <MainDoctorPage></MainDoctorPage>
     </div>
   );
 }

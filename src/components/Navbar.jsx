@@ -15,15 +15,16 @@ const handleSignOut = async () =>{
 };
 
   return (
-    <div className="bg-white py-3 border-2 shadow-xl">
-      <nav className="flex items-center justify-between max-w-7xl mx-auto text-slate-600">
-        <div>
-          <Image
-            src={"/assets/Wanderlast.png"}
-            height={100}
-            width={100}
+    <div className=" py-3 shadow-xl sticky top-0 z-50 border-cyan-100 bg-cyan-50/95  backdrop-blur-md">
+      <nav className="flex items-center justify-between max-w-7xl mx-auto text-slate-600 ">
+        <div className="flex items-center gap-2">
+          <Image className="w-12 h-10 " 
+            src={"/assets/NavLogo.png"}
+            height={1000}
+            width={1000}
             alt="logo"
           />
+          <h1 className="font-bold text-xl text-cyan-500"> Doc<span className="text-cyan-600">Appoint</span></h1>
         </div>
 
         <ul className="flex gap-3">

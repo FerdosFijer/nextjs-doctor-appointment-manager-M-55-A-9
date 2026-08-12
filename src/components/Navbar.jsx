@@ -36,9 +36,7 @@ const handleSignOut = async () =>{
           <li>
             <Link href={"/dashboard"}>Dashboard</Link>
           </li>
-          <li>
-            <Link href={"/add-destination"}>DDDD</Link>
-          </li>
+          
         </ul>
 
         <ul className="flex items-center gap-3">

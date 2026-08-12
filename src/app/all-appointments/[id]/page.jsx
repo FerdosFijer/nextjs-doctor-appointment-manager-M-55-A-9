@@ -41,8 +41,8 @@ const AllAppointmentsDetailsPage =async ({params}) => {
         <div className="flex items-center gap-3  mt-5 mb-3">
         <EditModal appointment={appointment} />
         <DeleteAlert appointment={appointment}/>
-      <BookingCard appointment={appointment}/>
       </div>
+      <BookingCard appointment={appointment}/>
       </div>
       
       </div>

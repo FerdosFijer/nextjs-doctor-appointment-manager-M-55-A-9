@@ -1,6 +1,8 @@
 import BookingCard from '@/components/BookingCard';
 import DeleteAlert from '@/components/DeleteAlert';
 import EditModal from '@/components/EditModal';
+import { auth } from '@/lib/auth';
+import { headers } from 'next/headers';
 import Image from 'next/image';
 import React from 'react';
 import { FaRegCalendar } from 'react-icons/fa';
@@ -8,7 +10,13 @@ import { LuMapPin } from 'react-icons/lu';
 
 const AllAppointmentsDetailsPage =async ({params}) => {
     const {id} =await params;
-    const res = await fetch(`http://localhost:5000/appointments/${id}`);
+    const {token} = await auth.api.getToken({
+    headers: await headers()
+  })
+    const res = await fetch(`http://localhost:5000/appointments/${id}`, {
+    headers:{
+      authorization:`Bearer ${token}`}
+    });
     const appointment = await res.json();
     
     const {_id, name, specialty,image, experience, description, hospital, location, fee } = appointment;

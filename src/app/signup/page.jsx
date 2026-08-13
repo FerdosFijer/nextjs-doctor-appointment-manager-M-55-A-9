@@ -1,16 +1,7 @@
 "use client";
 import { authClient } from "@/lib/auth-client";
 import { Check } from "@gravity-ui/icons";
-import {
-  Button,
-  Description,
-  FieldError,
-  Form,
-  Input,
-  Label,
-  Separator,
-  TextField,
-} from "@heroui/react";
+import {Button, Description,FieldError,Form,Input,Label,Separator,TextField,} from "@heroui/react";
 import { Card } from "@heroui/react";
 import { redirect } from "next/navigation";
 import { FcGoogle } from "react-icons/fc";
@@ -34,9 +25,9 @@ const SignUpPage = () => {
     }
     if (error) {
       alert("Error Information ");
-    }
+    
   };
-
+  }
   const handleGoogleSignin = async () => {
     await authClient.signIn.social({
       provider: "google",
@@ -45,7 +36,7 @@ const SignUpPage = () => {
   return (
     <div className="max-w-7xl mx-auto my-3">
       <div className="text-center my-3">
-        <h1 className="text-3x font-bold"> Create Account</h1>
+        <h1 className="text-3xl font-bold"> Create Account</h1>
         <p>Start your adventure with Wanderlust</p>
       </div>
       <Card className="border rounded none">
@@ -125,5 +116,4 @@ const SignUpPage = () => {
     </div>
   );
 };
-
 export default SignUpPage;

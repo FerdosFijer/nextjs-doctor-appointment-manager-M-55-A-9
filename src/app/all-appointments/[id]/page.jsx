@@ -13,7 +13,7 @@ const AllAppointmentsDetailsPage =async ({params}) => {
     
     const {_id, name, specialty,image, experience, description, hospital, location, fee } = appointment;
     return (
-         <div className=" flex justify-between gap-10 max-w-7xl mx-auto mb-10 my-10">
+         <div className=" flex justify-between gap-10 max-w-7xl mx-auto my-10 rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
 
       <Image
         className="w-200 h-150 "
@@ -24,14 +24,13 @@ const AllAppointmentsDetailsPage =async ({params}) => {
       />
       <div className="flex justify-between ">
         <div>
-        <div className="flex items-center gap-2 mt-5 text-xl">
-          <LuMapPin /> <span>{specialty}</span>
+        <div className="flex items-center gap-2 mt-5 text-xl text-cyan-500 font-bold">
+           {specialty}
         </div>
-        <div className=" font-semibold mt-5 ">
+        <div className="text-3xl font-bold mt-5 ">
           <h2>Name : {name}</h2>
         </div>
         <div className="flex gap-2 items-center">
-          <FaRegCalendar />
           Total Experience: {experience}
         </div>
         <div>
@@ -39,9 +38,9 @@ const AllAppointmentsDetailsPage =async ({params}) => {
           <p className="mb-6"> {description}</p>
         </div>
         <div className="flex items-center gap-3  mt-5 mb-3">
+      </div>
         <EditModal appointment={appointment} />
         <DeleteAlert appointment={appointment}/>
-      </div>
       <BookingCard appointment={appointment}/>
       </div>
       

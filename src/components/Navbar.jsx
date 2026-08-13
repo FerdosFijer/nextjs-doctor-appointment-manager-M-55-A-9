@@ -4,6 +4,7 @@ import { authClient } from "@/lib/auth-client";
 import { Avatar, Button } from "@heroui/react";
 import Image from "next/image";
 import Link from "next/link";
+import { FiLogOut } from "react-icons/fi";
 
 const Navbar =  () => {
 const {data: session, isPending}= authClient.useSession()
@@ -41,16 +42,21 @@ const handleSignOut = async () =>{
         </ul>
 
         <ul className="flex items-center gap-3">
-          <li>
-            <Link href={"/profile"}>Profile</Link>
-          </li>
           {
             user ? <><li><Avatar>
                         <Avatar.Image referrerPolicy="no-referrer" alt="John Doe" src={user?.image} />
                         <Avatar.Fallback>{user.name.charAt(0)}</Avatar.Fallback>
                         </Avatar> 
                     </li>
-            <li><Button variant="danger" className=" rounded-none" onClick={handleSignOut}>Logout</Button></li>
+            <li>
+              <button
+              onClick={handleSignOut}
+              className="group flex items-center gap-2 rounded-xl border border-red-100 bg-red-50 px-4 py-2.5 text-sm font-semibold text-red-500 transition-all duration-300 hover:border-red-200 hover:bg-red-500 hover:text-white"
+            >
+              <FiLogOut className="text-lg transition-transform duration-300 group-hover:translate-x-0.5" />
+              <span>Logout</span>
+            </button>
+            </li>
             </>:<>
             <li>
               <Link href={"/login"}>Login</Link>

@@ -62,7 +62,7 @@ const MainDoctorPage = async () => {
       <div className="mt-12 text-center">
 
         <p className="mb-4 text-sm text-slate-500">
-          Can't find the doctor you're looking for?
+          Can not find the doctor you are looking for?
         </p>
 
         <a

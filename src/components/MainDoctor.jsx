@@ -15,7 +15,7 @@ const MainDoctorPage = async () => {
         
         <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-cyan-200 bg-cyan-50 px-4 py-2 text-sm font-semibold text-cyan-600">
           <span>🩺</span>
-          Trusted Healthcare Professionals
+          Trusted Healthcare Professional
         </div>
 
         <h2 className="text-4xl font-bold tracking-tight text-slate-900 sm:text-5xl md:text-6xl">

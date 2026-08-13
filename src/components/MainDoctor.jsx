@@ -2,7 +2,7 @@ import Marquee from "react-fast-marquee";
 import AppointmentCard from "./AppointmentCard";
 
 const MainDoctorPage = async () => {
-  const res = await fetch("http://localhost:5000/appointments");
+  const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/appointments`);
 
   const appointments = await res.json();
 

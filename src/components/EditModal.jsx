@@ -1,99 +1,169 @@
-'use client'
-import { Button, FieldError, Input, Label, ListBox, Modal, Surface, TextArea, TextField, Select } from '@heroui/react';
-import { BiEdit } from 'react-icons/bi';
+"use client";
 
-const EditModal = ({appointment}) => {
-    const {_id, name, specialty,image, experience, description, hospital, location, fee } = appointment;
+import {
+  Button,
+  FieldError,
+  Input,
+  Label,
+  ListBox,
+  Modal,
+  Surface,
+  TextArea,
+  TextField,
+  Select,
+} from "@heroui/react";
+import { BiEdit } from "react-icons/bi";
 
-    const onSubmit = async (e) => {
-        e.prevent.Default();
-        const formData = new FormData(e.currentTarget);
-        const appointment = Object.fromEntries(formData.entries())
-        const res = await fetch (`http://localhost:5000/appointments/${id}`, {
-            method: 'PATCH',
-            headers:{'content-type': 'application/json'},
-            body: JSON.stringify(destination)
-        })
-        const data = await res.json();
-    }
-    return (
+const EditModal = ({ appointment }) => {
+  const {
+    _id,
+    name,
+    specialty,
+    image,
+    experience,
+    description,
+    hospital,
+    location,
+    fee,
+  } = appointment;
+
+  const onSubmit = async (e) => {
+    e.preventDefault();
+    const formData = new FormData(e.currentTarget);
+    const updatedAppointment = Object.fromEntries(formData.entries());
+    const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/appointments/${_id}`,
+        {
+          method: "PATCH",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(updatedAppointment),
+        }
+      );
+      const data = await res.json();
+  };
+
+  return (
     <Modal>
-    <Button variant="outline" className="rounded-none  "> <BiEdit /> Edit </Button>
+      <Button variant="outline" className="rounded-none">
+        <BiEdit />
+        Edit
+      </Button>
+
       <Modal.Backdrop>
         <Modal.Container placement="auto">
-          <Modal.Dialog className="sm:max-w-xl">
+          <Modal.Dialog className="sm:max-w-2xl">
             <Modal.CloseTrigger />
+
             <Modal.Header>
-              <Modal.Heading>Edit Destination</Modal.Heading>
+              <Modal.Heading>Edit Doctor</Modal.Heading>
             </Modal.Header>
+
             <Modal.Body className="p-6">
               <Surface variant="default">
-
-                <form className="p-10 space-y-8 " onSubmit={onSubmit}>
+                <form
+                  className="p-10 space-y-8"
+                  onSubmit={onSubmit}
+                >
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                    {/* Destination Name */}
+
+                    {/* Doctor Name */}
                     <div className="md:col-span-2">
                       <TextField
-                        name="destinationName"
+                        name="name"
                         isRequired
-                        //! defaultValue={destinationName}
+                        defaultValue={name}
                       >
-                        <Label>Destination Name</Label>
+                        <Label>Doctor Name</Label>
+
                         <Input
-                          placeholder="Bali Paradise"
+                          placeholder="Dr. John Doe"
                           className="rounded-2xl"
                         />
+
                         <FieldError />
                       </TextField>
                     </div>
 
-                    {/* Country */}
-                    <TextField 
-                    //! defaultValue={country} 
-                    name="country" isRequired>
-                      <Label>Country</Label>
-                      <Input placeholder="Indonesia" className="rounded-2xl" />
-                      <FieldError />
-                    </TextField>
-
-                    {/* Category - Updated Select Component */}
+                    {/* Specialty */}
                     <div>
                       <Select
-                        //! defaultValue={category}
-                        name="category"
+                        name="specialty"
+                        defaultValue={specialty}
                         isRequired
                         className="w-full"
-                        placeholder="Select category"
+                        placeholder="Select specialty"
                       >
-                        <Label>Category</Label>
+                        <Label>Specialty</Label>
+
                         <Select.Trigger className="rounded-2xl">
                           <Select.Value />
                           <Select.Indicator />
                         </Select.Trigger>
+
                         <Select.Popover>
                           <ListBox>
-                            <ListBox.Item id="Beach" textValue="Beach">
-                              Beach
+                            <ListBox.Item
+                              id="Cardiologist"
+                              textValue="Cardiologist"
+                            >
+                              Cardiologist
                               <ListBox.ItemIndicator />
                             </ListBox.Item>
-                            <ListBox.Item id="Mountain" textValue="Mountain">
-                              Mountain
+
+                            <ListBox.Item
+                              id="Neurologist"
+                              textValue="Neurologist"
+                            >
+                              Neurologist
                               <ListBox.ItemIndicator />
                             </ListBox.Item>
-                            <ListBox.Item id="City" textValue="City">
-                              City
+
+                            <ListBox.Item
+                              id="Dermatologist"
+                              textValue="Dermatologist"
+                            >
+                              Dermatologist
                               <ListBox.ItemIndicator />
                             </ListBox.Item>
-                            <ListBox.Item id="Adventure" textValue="Adventure">
-                              Adventure
+
+                            <ListBox.Item
+                              id="Orthopedic"
+                              textValue="Orthopedic"
+                            >
+                              Orthopedic
                               <ListBox.ItemIndicator />
                             </ListBox.Item>
-                            <ListBox.Item id="Cultural" textValue="Cultural">
-                              Cultural
+
+                            <ListBox.Item
+                              id="Pediatrician"
+                              textValue="Pediatrician"
+                            >
+                              Pediatrician
                               <ListBox.ItemIndicator />
                             </ListBox.Item>
-                            <ListBox.Item id="Luxury" textValue="Luxury">
-                              Luxury
+
+                            <ListBox.Item
+                              id="Gynecologist"
+                              textValue="Gynecologist"
+                            >
+                              Gynecologist
+                              <ListBox.ItemIndicator />
+                            </ListBox.Item>
+
+                            <ListBox.Item
+                              id="Dentist"
+                              textValue="Dentist"
+                            >
+                              Dentist
+                              <ListBox.ItemIndicator />
+                            </ListBox.Item>
+
+                            <ListBox.Item
+                              id="Psychiatrist"
+                              textValue="Psychiatrist"
+                            >
+                              Psychiatrist
                               <ListBox.ItemIndicator />
                             </ListBox.Item>
                           </ListBox>
@@ -101,96 +171,129 @@ const EditModal = ({appointment}) => {
                       </Select>
                     </div>
 
-                    {/* Price */}
+                    {/* Experience */}
                     <TextField
-                    //!   defaultValue={price}
-                      name="price"
+                      name="experience"
                       type="number"
                       isRequired
+                      defaultValue={experience}
                     >
-                      <Label>Price (USD)</Label>
+                      <Label>Experience (Years)</Label>
+
                       <Input
                         type="number"
-                        placeholder="1299"
+                        placeholder="10"
                         className="rounded-2xl"
                       />
+
                       <FieldError />
                     </TextField>
 
-                    {/* Duration */}
+                    {/* Hospital */}
                     <TextField
-                    //!   defaultValue={duration}
-                      name="duration"
+                      name="hospital"
                       isRequired
+                      defaultValue={hospital}
                     >
-                      <Label>Duration</Label>
+                      <Label>Hospital</Label>
+
                       <Input
-                        placeholder="7 Days / 6 Nights"
+                        placeholder="Square Hospital"
                         className="rounded-2xl"
                       />
+
                       <FieldError />
                     </TextField>
 
-                    {/* Departure Date */}
-                    <div className="md:col-span-2">
-                      <TextField  
-                       //!  defaultValue={departureDate}
-                       name="departureDate" type="date" isRequired>
-                        <Label>Departure Date</Label>
-                        <Input type="date" className="rounded-2xl" />
-                        <FieldError />
-                      </TextField>
-                    </div>
+                    {/* Location */}
+                    <TextField
+                      name="location"
+                      isRequired
+                      defaultValue={location}
+                    >
+                      <Label>Chamber Location</Label>
 
-                    {/* Image URL - Removed preview */}
+                      <Input
+                        placeholder="Dhanmondi, Dhaka"
+                        className="rounded-2xl"
+                      />
+
+                      <FieldError />
+                    </TextField>
+
+                    {/* Consultation Fee */}
+                    <TextField
+                      name="fee"
+                      type="number"
+                      isRequired
+                      defaultValue={fee}
+                    >
+                      <Label>Consultation Fee (BDT)</Label>
+
+                      <Input
+                        type="number"
+                        placeholder="1000"
+                        className="rounded-2xl"
+                      />
+
+                      <FieldError />
+                    </TextField>
+
+                    {/* Image URL */}
                     <div className="md:col-span-2">
                       <TextField
-                        //! defaultValue={imageUrl}
-                        name="imageUrl"
+                        name="image"
                         isRequired
+                        defaultValue={image}
                       >
-                        <Label>Image URL</Label>
+                        <Label>Doctor Image URL</Label>
+
                         <Input
                           type="url"
-                          placeholder="https://example.com/bali-paradise.jpg"
+                          placeholder="https://example.com/doctor.jpg"
                           className="rounded-2xl"
                         />
+
                         <FieldError />
                       </TextField>
                     </div>
 
                     {/* Description */}
-                    <div className="md:col-span-2 ">
+                    <div className="md:col-span-2">
                       <TextField
-                        //! defaultValue={description}
                         name="description"
                         isRequired
+                        defaultValue={description}
                       >
                         <Label>Description</Label>
+
                         <TextArea
-                          placeholder="Describe the travel experience..."
+                          placeholder="Write something about the doctor..."
                           className="rounded-3xl h-40"
                         />
+
                         <FieldError />
                       </TextField>
                     </div>
                   </div>
 
                   {/* Buttons */}
-
                   <Modal.Footer>
-                    
-                    <Button type="submit" slot="close">Save</Button>
+                    <Button
+                      type="submit"
+                      slot="close"
+                    >
+                      Save Changes
+                    </Button>
                   </Modal.Footer>
                 </form>
-
               </Surface>
             </Modal.Body>
           </Modal.Dialog>
         </Modal.Container>
       </Modal.Backdrop>
     </Modal>
-    );
+  );
 };
 
 export default EditModal;

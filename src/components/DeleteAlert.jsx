@@ -5,7 +5,7 @@ import { IoTrashBin } from 'react-icons/io5';
 const DeleteAlert = ({appointment}) => {
     const {_id, name, specialty,image, experience, description, hospital, location, fee } = appointment;
     const handleDelete = async () => {
-        const res = await fetch (`http://localhost:5000/appointments/${id}`,{
+        const res = await fetch (`${process.env.NEXT_PUBLIC_SERVER_URL}/appointments/${id}`,{
             method:'DELETE'
         })
         const data = await res.json();

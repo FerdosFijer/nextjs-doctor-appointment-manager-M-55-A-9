@@ -13,10 +13,11 @@ const AllAppointmentsDetailsPage =async ({params}) => {
     const {token} = await auth.api.getToken({
     headers: await headers()
   })
-    const res = await fetch(`http://localhost:5000/appointments/${id}`, {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/appointments/${id}`, {
     headers:{
-      authorization:`Bearer ${token}`}
-    });
+      authorization:`Bearer ${token}`
+    }
+  });
     const appointment = await res.json();
     
     const {_id, name, specialty,image, experience, description, hospital, location, fee } = appointment;
